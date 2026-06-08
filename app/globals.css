@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-mid: var(--accent-mid);
+  --color-light-green: var(--light-green);
+  --color-surface: var(--surface);
+  --color-teal: var(--teal);
+  --color-dark: var(--dark);
+  --color-white: var(--white);
+  
+  --font-serif: var(--font-heading), "Outfit", sans-serif;
+  --font-sans: var(--font-body), "Inter", sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --brand-green: #a4ce31;
+    --brand-periwinkle: #d3d1ff;
+    --brand-pine: #004e3f;
+    --brand-pale-green: #d1e59c;
+    --brand-bg: #e0e8d8;
+    --brand-slate-blue: #b4c2d9;
+    --brand-lime: #acce54;
+    --brand-teal: #4f8280;
+
+    /* Theme Mapping */
+    --primary: var(--brand-pine);
+    --accent: var(--brand-green);
+    --accent-mid: var(--brand-lime);
+    --light-green: var(--brand-bg);
+    --surface: #ffffff;
+    --teal: var(--brand-teal);
+    --dark: var(--brand-pine);
+    --white: #ffffff;
+  }
+}
+
+@layer components {
+  /* Modern elegant buttons */
+  .architectural-btn {
+    @apply inline-flex justify-center items-center font-medium transition-all duration-300 rounded-md border border-transparent shadow-sm hover:shadow-md active:scale-95 px-6 py-3 bg-accent text-primary hover:bg-accent-mid;
+  }
+  
+  /* Modern clean cards */
+  .architectural-card {
+    @apply bg-surface border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out;
+  }
+
+  /* Soft Glass Panels */
+  .glass-panel {
+    @apply bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg rounded-xl;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--light-green);
+    color: var(--primary);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Global Grid Lines */
+  ::selection {
+    background-color: var(--accent);
+    color: var(--white);
+  }
+}
