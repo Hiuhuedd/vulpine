@@ -30,7 +30,6 @@ export default function Navbar() {
     { name: 'Services', href: '/services' },
     { name: 'Projects', href: '/projects' },
     { name: 'Team', href: '/team' },
-    { name: 'PPP', href: '/ppp' },
   ];
 
   return (

@@ -18,23 +18,24 @@ function DynamicIcon({ name, className }: { name: string; className?: string }) 
 export default function ServicesOverview({ data }: ServicesOverviewProps) {
   const heading = data?.heading || "OUR CORE COMPETENCIES";
   const subheading = data?.subheading || "We offer comprehensive construction, infrastructure, and management solutions across East Africa.";
-  const items = data?.items && data.items.length > 0 ? data.items : [
+  // Force the website to only ever show these 3 core services, ignoring CMS items completely
+  const displayItems = [
     {
       id: "building",
-      title: "Building Construction Works",
-      description: "Foundational marking, core concreting, precision masonry, and comprehensive interior finishing.",
+      title: "Building Works",
+      description: "High-quality residential, commercial, and institutional projects delivered to standards.",
       icon: "Building2"
     },
     {
       id: "roads",
-      title: "Road Works & Infrastructure",
-      description: "Large paved areas, highways, bulk earthworks, and specialized access routes for heavy civil engineering.",
+      title: "Road Construction Works",
+      description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.",
       icon: "Milestone"
     },
     {
       id: "electrical",
       title: "Electrical Works",
-      description: "Safe, smart, and sustainable electrical distribution networks and high-voltage substation installations.",
+      description: "Power infrastructure, high/low voltage installations, and maintenance services.",
       icon: "Zap"
     }
   ];
@@ -48,7 +49,7 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase mb-6 bg-primary text-white inline-block px-4 py-2">
               {heading}
             </span>
-            <h2 className="font-sans text-3xl sm:text-3xl lg:text-3xl text-primary font-bold tracking-tighter leading-[0.9]">
+            <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl text-primary font-bold tracking-tighter leading-[0.9]">
               INFRASTRUCTURE <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-mid">& CONSTRUCTION</span>
             </h2>
@@ -60,7 +61,7 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {items.map((service: any, index: number) => (
+          {displayItems.map((service: any, index: number) => (
             <motion.div
               key={service.id || index}
               initial={{ opacity: 0, y: 30 }}

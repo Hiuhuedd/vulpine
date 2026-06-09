@@ -72,8 +72,6 @@ export default function Footer() {
               <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Building Works</Link></li>
               <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Road Construction Works</Link></li>
               <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Electrical Works</Link></li>
-              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Project Management (EPCM)</Link></li>
-              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Public Private Partnerships</Link></li>
             </ul>
           </div>
 
@@ -85,7 +83,6 @@ export default function Footer() {
               <li><Link href="/about" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">About Vulpine</Link></li>
               <li><Link href="/projects" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Our Portfolio</Link></li>
               <li><Link href="/team" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Our Team</Link></li>
-              <li><Link href="/ppp" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">PPP Engagement</Link></li>
               <li><Link href="/contact" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Contact Us</Link></li>
             </ul>
           </div>

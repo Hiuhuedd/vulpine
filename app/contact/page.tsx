@@ -173,10 +173,7 @@ function ContactFormContent() {
           >
             <option value="building">Building Works</option>
             <option value="roads">Road Construction Works</option>
-            <option value="water">Water & Infrastructure</option>
             <option value="electrical">Electrical Works</option>
-            <option value="epcm">Project Management (EPCM)</option>
-            <option value="ppp">Public Private Partnerships (PPP)</option>
             <option value="other">Other Inquiry</option>
           </select>
         </div>

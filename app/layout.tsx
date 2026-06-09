@@ -21,8 +21,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Vulpine Limited | Design, Construction & Maintenance | East Africa",
-  description: "Vulpine Limited is a registered NCA6 building and civil contractor operating across East Africa. Specializing in building, road construction, electrical, water infrastructure works, and PPP initiatives.",
-  keywords: "Vulpine Limited, construction company Kenya, NCA6 building contractor, civil works East Africa, building works, road works, electrical works, water infrastructure, EPCM, Public Private Partnerships",
+  description: "Vulpine Limited is a registered NCA6 building and civil contractor operating across East Africa. Specializing in building, road construction, and electrical works.",
+  keywords: "Vulpine Limited, construction company Kenya, NCA6 building contractor, civil works East Africa, building works, road works, electrical works",
   icons: {
     icon: "/vulpine-logo.png",
     apple: "/vulpine-logo.png",

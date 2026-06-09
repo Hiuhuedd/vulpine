@@ -55,10 +55,7 @@ export default function SeedPage() {
           items: [
             { id: "building", title: "Building Works", description: "High-quality residential, commercial, and institutional projects delivered to standards.", icon: "Building2" },
             { id: "roads", title: "Road Construction Works", description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.", icon: "Milestone" },
-            { id: "water", title: "Water & Infrastructure", description: "Sanitation, supply systems, pipelines, and sustainable water resources.", icon: "Droplet" },
-            { id: "electrical", title: "Electrical Works", description: "Power infrastructure, high/low voltage installations, and maintenance services.", icon: "Zap" },
-            { id: "project_management", title: "Project Management (EPCM)", description: "Full lifecycle Engineering, Procurement, Construction & Management services.", icon: "Briefcase" },
-            { id: "ppp", title: "Public Private Partnerships (PPP)", description: "Collaborative project conceptualization, financing, implementation, and management.", icon: "Handshake" }
+            { id: "electrical", title: "Electrical Works", description: "Power infrastructure, high/low voltage installations, and maintenance services.", icon: "Zap" }
           ]
         },
         strengths: {
@@ -171,7 +168,7 @@ export default function SeedPage() {
           id: "team_001",
           name: "Wilson Baru Wachira",
           title: "Managing Director / Director",
-          bio: "Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and PPP initiatives across East Africa.",
+          bio: "Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and infrastructure initiatives across East Africa.",
           photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
           visible: true
         },

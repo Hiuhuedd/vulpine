@@ -45,54 +45,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
       details: ["High, medium & low voltage distribution", "Substation & transformer servicing", "Smart building automation", "Internal wiring & telecom cabling", "Solar PV & industrial generators", "Advanced fire detection & lighting"]
     },
-    {
-      id: "general",
-      title: "General Contracting",
-      icon: FileText,
-      description: "We offer professional, client-centered general contracting services tailored to individual project needs.",
-      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
-      contracts: ["Negotiated Contracts", "Lump Sum Contracts", "Cost Reimbursement Contracts"]
-    },
-    {
-      id: "epcm",
-      title: "Project Management (EPCM)",
-      icon: Briefcase,
-      description: "Engineering, Procurement, Construction & Management services ensuring project execution fits budget and timeline goals.",
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
-      processSteps: ["Engineering", "Procurement", "Planning", "Construction", "Commissioning"]
-    },
-    {
-      id: "ppp",
-      title: "Public Private Partnerships (PPP)",
-      icon: Handshake,
-      description: "Structuring project conceptualization, securing private/public finance, and managing operations for public infrastructure.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-      processSteps: ["Project Conceptualization", "Financing Structure", "Presentation & Approvals", "Implementation", "Management & Operationalization"]
-    },
-    {
-      id: "concrete",
-      title: "Ready Mix Concrete & Bulk Cement",
-      icon: Layers,
-      description: "High-grade concrete batching plant capabilities to supply large-scale projects directly at site location.",
-      image: "https://images.unsplash.com/photo-1504917595217-d4bf80504bb4?auto=format&fit=crop&w=1200&q=80",
-      details: ["Concrete plant supply capability", "Bulk cement procurement & logistics", "On-site mixing & quality testing"]
-    },
-    {
-      id: "realestate",
-      title: "Real Estate Development",
-      icon: Home,
-      description: "Specialized in structured properties, residential joint ventures, and sustainable housing systems.",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
-      details: ["Joint venture property development", "Residential estate mapping", "Asset management & sales support"]
-    },
-    {
-      id: "jointventures",
-      title: "Joint Ventures",
-      icon: Users,
-      description: "Partnering with global and local developers to finance, build, and deliver complex high-value civil projects.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80",
-      details: ["Consortium styling", "Financial asset packaging", "Shared risk & resource allocation"]
-    }
+
   ];
 
   return (
