@@ -15,74 +15,85 @@ export default function AboutTeaser({ data }: AboutTeaserProps) {
   const ceoQuote = data?.ceoQuote || "Our journey to where we are today has been marked with many hurdles and challenges... Our hard work, determination and unbowed resolve to always deliver quality and on time, has been rewarded in more ways than we could imagine.";
 
   return (
-    <section className="bg-light-green py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: CEO Note Pull Quote */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-6 space-y-6"
-          >
-            <span className="text-sm font-semibold tracking-widest text-accent uppercase block mb-4 font-sans">
-              A Letter From Our MD
-            </span>
-            <div className="border-l-4 border-accent pl-6 py-2">
-              <blockquote className="font-serif text-xl sm:text-2xl text-primary font-bold italic leading-relaxed tracking-wide">
-                "{ceoQuote}"
-              </blockquote>
-              <cite className="block font-sans text-sm font-medium text-slate-500 mt-4 not-italic">
-                — Wilson Baru Wachira, Managing Director
-              </cite>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Company intro and badges */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-6 space-y-8"
-          >
-            <div>
-              <span className="text-sm font-semibold tracking-widest text-accent uppercase block mb-3">
+    <section className="bg-white py-32 relative overflow-hidden border-t border-slate-100">
+      <div className="absolute top-0 right-0 w-full lg:w-1/3 h-full bg-surface" />
+      
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          
+          {/* Main Typography Block */}
+          <div className="lg:w-7/12">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase mb-8 bg-primary text-accent inline-block px-4 py-2">
                 {heading}
               </span>
-              <div className="w-12 h-0.5 bg-accent mb-6" />
-              <h2 className="font-serif text-3xl font-bold tracking-wide mb-6 text-primary">
-                Architecting Progress Across East Africa
+              <h2 className="font-sans text-4xl sm:text-5xl lg:text-7xl font-black text-primary tracking-tighter leading-[0.9]">
+                ARCHITECTING <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-mid">PROGRESS</span> <br/>
+                ACROSS EAST AFRICA
               </h2>
-              <p className="text-slate-600 font-sans text-base leading-relaxed">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="mt-12 max-w-xl"
+            >
+              <p className="text-slate-500 font-sans text-lg lg:text-xl font-medium leading-relaxed">
                 {body}
               </p>
-            </div>
-
-            {/* NCA Trust Signal Badge */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-slate-200">
-              <div className="flex items-center space-x-3.5 bg-surface p-4 border border-slate-200 rounded-lg shadow-sm">
-                <div className="text-accent shrink-0">
-                  <Award size={32} />
+              
+              <div className="grid grid-cols-2 gap-6 mt-12">
+                <div className="border-l-2 border-accent pl-4">
+                  <h4 className="font-sans font-black text-2xl text-primary tracking-tighter">NCA6</h4>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">Reg No. 85321/B/0423</p>
                 </div>
-                <div>
-                  <h4 className="font-serif text-sm font-bold text-primary tracking-wide">NCA6 Contractor</h4>
-                  <p className="text-slate-500 font-sans text-xs font-medium">Reg No. 85321/B/0423</p>
+                <div className="border-l-2 border-accent pl-4">
+                  <h4 className="font-sans font-black text-2xl text-primary tracking-tighter">KRA</h4>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">PIN: P051737046N</p>
                 </div>
               </div>
+            </motion.div>
+          </div>
 
-              <div className="flex items-center space-x-3.5 bg-surface p-4 border border-slate-200 rounded-lg shadow-sm">
-                <div className="text-accent shrink-0">
-                  <ShieldCheck size={32} />
-                </div>
+          {/* CEO Pull Quote Block */}
+          <div className="lg:w-5/12">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-primary p-10 sm:p-14 relative shadow-2xl"
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-accent rounded-bl-[100px]" />
+              
+              <span className="text-[10px] font-bold tracking-[0.2em] text-accent/80 uppercase block mb-8">
+                MD'S MESSAGE
+              </span>
+              
+              <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-medium italic leading-snug">
+                "{ceoQuote}"
+              </blockquote>
+              
+              <div className="mt-10 pt-10 border-t border-white/20 flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif text-sm font-bold text-primary tracking-wide">KRA Compliant</h4>
-                  <p className="text-slate-500 font-sans text-xs font-medium">PIN: P051737046N</p>
+                  <cite className="block font-sans text-sm font-bold text-white uppercase tracking-widest not-italic">
+                    Wilson Baru Wachira
+                  </cite>
+                  <span className="text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Managing Director</span>
                 </div>
+                <Award size={48} strokeWidth={1} className="text-accent opacity-50" />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>
