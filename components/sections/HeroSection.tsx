@@ -19,98 +19,71 @@ export default function HeroSection({ data }: HeroSectionProps) {
   const heroImage = data?.images?.[0] || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80";
 
   return (
-    <section className="relative min-h-screen bg-surface flex items-center pt-32 pb-12 overflow-hidden">
+    <section className="relative min-h-[90vh] bg-surface flex items-center pt-32 pb-12 overflow-hidden border-b border-slate-100">
       {/* Decorative large background text */}
-      <div className="absolute top-1/4 -left-10 text-[15vw] font-sans font-black text-slate-200/50 whitespace-nowrap pointer-events-none select-none">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-[8vw] font-sans font-bold text-slate-200/40 whitespace-nowrap pointer-events-none select-none">
         EAST AFRICA
       </div>
 
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-12 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Text Content */}
-          <div className="lg:col-span-6 space-y-8 z-20">
-            <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-24 h-1.5 bg-accent origin-left"
-            />
-            
-            <div>
-              <motion.h2 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-sans text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-slate-500 mb-6"
-              >
-                {subheading}
-              </motion.h2>
-              
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="font-sans text-5xl sm:text-7xl lg:text-[5.5rem] leading-[1] tracking-tighter font-black text-primary"
-              >
-                {heading.split(' ').map((word, i) => (
-                  <span key={i} className={i % 2 === 1 ? 'text-accent' : ''}>{word} </span>
-                ))}
-              </motion.h1>
-            </div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 w-full relative z-10 flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-24 h-1.5 bg-accent mb-10"
+        />
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="text-slate-600 font-sans text-lg sm:text-xl max-w-lg leading-relaxed font-medium"
-            >
-              {body}
-            </motion.p>
+        <div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-slate-500 mb-8"
+          >
+            {subheading}
+          </motion.h2>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex items-center space-x-6 pt-4"
-            >
-              <Link href={ctaLink} className="group relative inline-flex items-center justify-center px-8 py-4 font-sans font-bold text-white bg-primary rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/20">
-                <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black" />
-                <span className="relative text-xs tracking-widest uppercase">{ctaLabel}</span>
-              </Link>
-              
-              <div className="hidden sm:flex items-center space-x-3 text-[10px] font-bold uppercase tracking-widest text-primary">
-                <span className="w-12 h-px bg-slate-300" />
-                <span>Scroll to Explore</span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Image Container */}
-          <div className="lg:col-span-6 relative h-[50vh] lg:h-[80vh] w-full mt-8 lg:mt-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
-              className="relative w-full h-full rounded-[2rem] lg:rounded-[4rem] overflow-hidden shadow-2xl"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center transform hover:scale-105 transition-transform duration-[2s] ease-out"
-                style={{ backgroundImage: `url('${heroImage}')` }}
-              />
-              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-            </motion.div>
-
-            {/* Floating geometric accent */}
-            <motion.div
-              animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-10 -left-10 w-64 h-64 bg-accent rounded-full blur-3xl opacity-20 pointer-events-none"
-            />
-          </div>
-
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="font-sans text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight font-bold text-primary"
+          >
+            {heading.split(' ').map((word, i) => (
+              <span key={i} className={i % 2 === 1 ? 'text-accent' : ''}>{word} </span>
+            ))}
+          </motion.h1>
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-slate-600 font-sans text-lg sm:text-xl max-w-2xl leading-relaxed font-medium mt-10"
+        >
+          {body}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="flex flex-col items-center space-y-10 pt-16"
+        >
+          <Link href={ctaLink} className="group relative inline-flex items-center justify-center px-10 py-5 font-sans font-bold text-white bg-primary rounded-sm overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/20">
+            <span className="absolute inset-0 w-full h-full -mt-1 rounded-sm opacity-30 bg-gradient-to-b from-transparent via-transparent to-black" />
+            <span className="relative text-[11px] tracking-widest uppercase">{ctaLabel}</span>
+          </Link>
+
+          <div className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            <span className="w-16 h-px bg-slate-200" />
+            <span>Scroll to Explore</span>
+            <span className="w-16 h-px bg-slate-200" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
+
+

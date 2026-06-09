@@ -66,7 +66,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-block bg-accent/5 border border-accent/20 px-4 py-1.5 rounded-full mb-6">
+          <div className="inline-block bg-accent/5 border border-accent/20 px-4 py-1.5 rounded-sm mb-6">
             <span className="text-xs font-semibold tracking-widest text-accent uppercase font-sans">
               {heading}
             </span>
@@ -77,7 +77,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
         </div>
 
         {/* Testimonial card */}
-        <div className="relative min-h-[300px] flex flex-col items-center justify-center bg-white border border-slate-200 rounded-[3rem] p-8 sm:p-16 shadow-xl">
+        <div className="relative min-h-[300px] flex flex-col items-center justify-center bg-white border border-slate-200 rounded-sm p-8 sm:p-16 shadow-xl">
           <div className="text-accent/20 absolute top-8 left-8 pointer-events-none">
             <Quote size={80} />
           </div>
@@ -111,17 +111,17 @@ export default function Testimonials({ data }: TestimonialsProps) {
             <div className="flex items-center justify-center space-x-6 mt-12 relative z-10">
               <button
                 onClick={handlePrev}
-                className="bg-white hover:bg-accent hover:text-primary border border-slate-200 text-slate-500 p-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
+                className="bg-white hover:bg-accent hover:text-primary border border-slate-200 text-slate-500 p-3 rounded-sm transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft size={20} />
               </button>
-              <span className="text-xs font-sans font-bold text-slate-500 tracking-widest bg-slate-100 px-4 py-1.5 rounded-full">
+              <span className="text-xs font-sans font-bold text-slate-500 tracking-widest bg-slate-100 px-4 py-1.5 rounded-sm">
                 {currentIndex + 1} / {testimonials.length}
               </span>
               <button
                 onClick={handleNext}
-                className="bg-white hover:bg-accent hover:text-primary border border-slate-200 text-slate-500 p-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
+                className="bg-white hover:bg-accent hover:text-primary border border-slate-200 text-slate-500 p-3 rounded-sm transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
                 aria-label="Next testimonial"
               >
                 <ChevronRight size={20} />
@@ -133,3 +133,5 @@ export default function Testimonials({ data }: TestimonialsProps) {
     </section>
   );
 }
+
+

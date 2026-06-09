@@ -47,3 +47,5 @@ export function useSection(sectionId: string): { section: SectionData | null; lo
 export function useAllSections() {
   return useContext(SectionsContext);
 }
+
+

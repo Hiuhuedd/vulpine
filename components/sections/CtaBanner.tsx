@@ -18,10 +18,10 @@ export default function CtaBanner({ data }: CtaBannerProps) {
   return (
     <section className="bg-light-green py-20 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-white border border-slate-200 rounded-[3rem] p-12 sm:p-20 text-center relative overflow-hidden shadow-2xl">
+        <div className="bg-white border border-slate-200 rounded-sm p-12 sm:p-20 text-center relative overflow-hidden shadow-2xl">
           {/* Background accents inside card */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-sm blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-sm blur-[100px] pointer-events-none" />
 
           <div className="relative z-10 space-y-8">
             <motion.h2
@@ -29,7 +29,7 @@ export default function CtaBanner({ data }: CtaBannerProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary font-bold tracking-tight leading-tight"
+              className="font-serif text-3xl sm:text-3xl md:text-3xl lg:text-3xl text-primary font-bold tracking-tight leading-tight"
             >
               {heading}
             </motion.h2>
@@ -64,3 +64,5 @@ export default function CtaBanner({ data }: CtaBannerProps) {
     </section>
   );
 }
+
+

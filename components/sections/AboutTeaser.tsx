@@ -29,10 +29,10 @@ export default function AboutTeaser({ data }: AboutTeaserProps) {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-[10px] font-black tracking-[0.2em] uppercase mb-8 bg-primary text-accent inline-block px-4 py-2">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase mb-8 bg-primary text-accent inline-block px-4 py-2">
                 {heading}
               </span>
-              <h2 className="font-sans text-4xl sm:text-5xl lg:text-7xl font-black text-primary tracking-tighter leading-[0.9]">
+              <h2 className="font-sans text-3xl sm:text-3xl lg:text-3xl font-bold text-primary tracking-tighter leading-[0.9]">
                 ARCHITECTING <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-mid">PROGRESS</span> <br/>
                 ACROSS EAST AFRICA
@@ -52,11 +52,11 @@ export default function AboutTeaser({ data }: AboutTeaserProps) {
               
               <div className="grid grid-cols-2 gap-6 mt-12">
                 <div className="border-l-2 border-accent pl-4">
-                  <h4 className="font-sans font-black text-2xl text-primary tracking-tighter">NCA6</h4>
+                  <h4 className="font-sans font-bold text-2xl text-primary tracking-tighter">NCA6</h4>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">Reg No. 85321/B/0423</p>
                 </div>
                 <div className="border-l-2 border-accent pl-4">
-                  <h4 className="font-sans font-black text-2xl text-primary tracking-tighter">KRA</h4>
+                  <h4 className="font-sans font-bold text-2xl text-primary tracking-tighter">KRA</h4>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">PIN: P051737046N</p>
                 </div>
               </div>
@@ -78,7 +78,7 @@ export default function AboutTeaser({ data }: AboutTeaserProps) {
                 MD'S MESSAGE
               </span>
               
-              <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-medium italic leading-snug">
+              <blockquote className="font-serif text-2xl sm:text-3xl lg:text-3xl text-white font-medium italic leading-snug">
                 "{ceoQuote}"
               </blockquote>
               
@@ -99,3 +99,5 @@ export default function AboutTeaser({ data }: AboutTeaserProps) {
     </section>
   );
 }
+
+

@@ -37,13 +37,13 @@ export default function Navbar() {
     <>
       <div className="fixed top-0 left-0 w-full z-50 flex justify-center mt-6 px-4">
         <nav
-          className={`transition-all duration-500 rounded-full bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.08)] ${
+          className={`transition-all duration-500 rounded-sm bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.08)] ${
             isScrolled ? 'py-3 px-6 w-[95%] md:w-[85%]' : 'py-4 px-8 w-full md:w-[90%]'
           } max-w-7xl flex items-center justify-between`}
         >
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0 space-x-3 group">
-            <div className="bg-primary/5 p-2 rounded-full group-hover:bg-accent/10 transition-colors">
+            <div className="bg-primary/5 p-2 rounded-sm group-hover:bg-accent/10 transition-colors">
               <Image
                 src="/vulpine-logo.png"
                 alt="Vulpine Limited"
@@ -53,20 +53,20 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-sans font-black text-xl tracking-tighter text-primary">
+            <span className="font-sans font-bold text-xl tracking-tighter text-primary">
               VULPINE<span className="text-accent">.</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 bg-surface p-1 rounded-full border border-slate-100">
+          <div className="hidden md:flex items-center space-x-1 bg-surface p-1 rounded-sm border border-slate-100">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`font-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 px-5 py-2.5 rounded-full ${
+                  className={`font-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 px-5 py-2.5 rounded-sm ${
                     isActive
                       ? 'text-white bg-primary shadow-md'
                       : 'text-slate-500 hover:text-primary hover:bg-white'
@@ -89,7 +89,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-primary bg-surface p-2.5 rounded-full shadow-sm"
+              className="text-primary bg-surface p-2.5 rounded-sm shadow-sm"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
@@ -107,7 +107,7 @@ export default function Navbar() {
         <div className="flex flex-col h-full justify-center px-8 relative overflow-hidden">
           {/* Decorative huge text */}
           <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 opacity-5 rotate-90 origin-center pointer-events-none">
-            <span className="font-sans font-black text-[20rem] text-white">VULPINE</span>
+            <span className="font-sans font-bold text-[6rem] text-white">VULPINE</span>
           </div>
 
           <div className="flex flex-col space-y-6 relative z-10">
@@ -123,7 +123,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className={`font-sans text-4xl sm:text-5xl font-black uppercase tracking-tighter flex items-center space-x-4 ${
+                      className={`font-sans text-3xl sm:text-3xl font-bold uppercase tracking-tighter flex items-center space-x-4 ${
                         isActive ? 'text-accent' : 'text-white hover:text-surface'
                       }`}
                     >
@@ -140,3 +140,5 @@ export default function Navbar() {
     </>
   );
 }
+
+

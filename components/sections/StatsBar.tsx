@@ -65,9 +65,9 @@ export default function StatsBar({ data }: StatsBarProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 key={idx} 
-                className="bg-white rounded-xl shadow-sm border border-slate-100 p-8 sm:p-10 flex flex-col items-center justify-center space-y-4 hover:shadow-md hover:border-slate-200 transition-all duration-300"
+                className="bg-white rounded-sm shadow-sm border border-slate-100 p-8 sm:p-10 flex flex-col items-center justify-center space-y-4 hover:shadow-md hover:border-slate-200 transition-all duration-300"
               >
-                <div className="font-serif text-5xl sm:text-6xl font-bold text-accent">
+                <div className="font-serif text-3xl sm:text-3xl font-bold text-accent">
                   {isNca ? (
                     <span>{item.value}</span>
                   ) : (
@@ -85,3 +85,5 @@ export default function StatsBar({ data }: StatsBarProps) {
     </section>
   );
 }
+
+

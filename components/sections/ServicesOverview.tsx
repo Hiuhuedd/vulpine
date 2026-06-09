@@ -45,10 +45,10 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
         {/* Section Header */}
         <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-10">
           <div>
-            <span className="text-[10px] font-black tracking-[0.2em] uppercase mb-6 bg-primary text-white inline-block px-4 py-2">
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase mb-6 bg-primary text-white inline-block px-4 py-2">
               {heading}
             </span>
-            <h2 className="font-sans text-5xl sm:text-6xl lg:text-7xl text-primary font-black tracking-tighter leading-[0.9]">
+            <h2 className="font-sans text-3xl sm:text-3xl lg:text-3xl text-primary font-bold tracking-tighter leading-[0.9]">
               INFRASTRUCTURE <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-mid">& CONSTRUCTION</span>
             </h2>
@@ -69,16 +69,16 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative bg-white overflow-hidden p-10 lg:p-12 border border-slate-100 transition-all duration-500 hover:shadow-2xl"
             >
-              <div className="absolute top-0 right-0 p-4 text-[10rem] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-accent/10 select-none pointer-events-none">
+              <div className="absolute top-0 right-0 p-4 text-[6rem] font-bold leading-none text-slate-50 transition-colors duration-500 group-hover:text-accent/10 select-none pointer-events-none">
                 0{index + 1}
               </div>
               
               <div className="relative z-10 flex flex-col h-full">
                 <div className="mb-16">
-                  <div className="w-16 h-16 bg-primary text-white flex items-center justify-center rounded-2xl mb-8 transform group-hover:scale-110 group-hover:bg-accent group-hover:text-primary transition-all duration-500 shadow-lg">
+                  <div className="w-16 h-16 bg-primary text-white flex items-center justify-center rounded-sm mb-8 transform group-hover:scale-110 group-hover:bg-accent group-hover:text-primary transition-all duration-500 shadow-lg">
                     <DynamicIcon name={service.icon || 'Building2'} />
                   </div>
-                  <h3 className="font-sans text-2xl lg:text-3xl font-black text-primary tracking-tighter mb-4 leading-tight">
+                  <h3 className="font-sans text-2xl lg:text-3xl font-bold text-primary tracking-tighter mb-4 leading-tight">
                     {service.title}
                   </h3>
                   <p className="text-slate-500 font-sans font-medium leading-relaxed">
@@ -89,10 +89,10 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
                 <div className="mt-auto pt-8 border-t border-slate-100">
                   <Link
                     href={`/services#${service.id || ''}`}
-                    className="flex items-center justify-between text-primary font-sans text-[11px] font-black tracking-widest uppercase group/link"
+                    className="flex items-center justify-between text-primary font-sans text-[11px] font-bold tracking-widest uppercase group/link"
                   >
                     <span>Explore Division</span>
-                    <span className="w-10 h-10 rounded-full border border-primary flex items-center justify-center group-hover/link:bg-accent group-hover/link:border-accent group-hover/link:text-primary transition-all duration-300">
+                    <span className="w-10 h-10 rounded-sm border border-primary flex items-center justify-center group-hover/link:bg-accent group-hover/link:border-accent group-hover/link:text-primary transition-all duration-300">
                       <Icons.ArrowRight size={16} />
                     </span>
                   </Link>
@@ -105,3 +105,5 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
     </section>
   );
 }
+
+
