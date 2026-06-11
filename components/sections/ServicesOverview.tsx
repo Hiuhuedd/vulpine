@@ -35,7 +35,7 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
     {
       id: "electrical",
       title: "Electrical Works",
-      description: "Power infrastructure, high/low voltage installations, and maintenance services.",
+      description: "Specialized in commercial solar panel installations, high-security electric fencing, and smart power infrastructure.",
       icon: "Zap"
     }
   ];

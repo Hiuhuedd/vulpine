@@ -41,9 +41,9 @@ export default function ServicesPage() {
       id: "electrical",
       title: "Electrical Works",
       icon: Zap,
-      description: "Integrating safe, smart, and sustainable electrical distribution networks, from high/medium voltage power to structured building telecom cabling.",
-      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
-      details: ["High, medium & low voltage distribution", "Substation & transformer servicing", "Smart building automation", "Internal wiring & telecom cabling", "Solar PV & industrial generators", "Advanced fire detection & lighting"]
+      description: "We provide state-of-the-art sustainable energy and security solutions, specializing in comprehensive solar panel installations and high-security electric fencing for residential and commercial properties.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
+      details: ["Commercial & Residential Solar Panel Installation", "High-Security Electric Fencing"]
     },
 
   ];
