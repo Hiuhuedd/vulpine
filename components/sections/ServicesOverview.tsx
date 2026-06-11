@@ -34,8 +34,8 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
     },
     {
       id: "electrical",
-      title: "Electrical Works",
-      description: "Specialized in commercial solar panel installations, high-security electric fencing, and smart power infrastructure.",
+      title: "Electrical, Solar & Security",
+      description: "Robust solar setups, core electrical infrastructure, and advanced electric fencing for properties and wildlife conservation.",
       icon: "Zap"
     }
   ];

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import {
   Building2, Milestone, Droplet, Zap, Briefcase,
   Handshake, FileText, Construction, Layers, Home,
-  Users, ArrowRight, ArrowUpRight
+  Users, ArrowRight, ArrowUpRight, Sun, Shield
 } from 'lucide-react';
 
 interface ServiceDetail {
@@ -39,12 +39,50 @@ export default function ServicesPage() {
     },
     {
       id: "electrical",
-      title: "Electrical Works",
+      title: "Core Electrical Works",
       icon: Zap,
-      description: "We provide state-of-the-art sustainable energy and security solutions, specializing in comprehensive solar panel installations and high-security electric fencing for residential and commercial properties.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
-      details: ["Commercial & Residential Solar Panel Installation", "High-Security Electric Fencing"]
+      description: "We handle foundational electrical infrastructure with a strict focus on safety and international engineering standards. Our team translates complex technical installations into safe, seamless, and energy-efficient systems.",
+      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "Full Wiring for new builds & renovations",
+        "Power Distribution & main switchboards",
+        "Automated Backup Generators",
+        "Energy Audits to identify power wastage",
+        "Safety Inspections, grounding & surge protection"
+      ]
     },
+    {
+      id: "solar",
+      title: "Advanced Solar Power Systems",
+      icon: Sun,
+      description: "We design and install custom solar solutions to eliminate power outages and slash your electricity bills. We specialize in robust solar setups tailored for residential and commercial environments.",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "Custom Design matched to energy needs",
+        "Hybrid Systems with battery storage",
+        "Off-Grid Setup for remote locations",
+        "Net Metering to sell excess power",
+        "Maintenance & Battery Health Diagnostics"
+      ]
+    },
+    {
+      id: "wildlife-fencing",
+      title: "Perimeter Protection & Wildlife Management",
+      icon: Shield,
+      description: "Wildlife conservation requires a specialized approach to fencing. We design and install heavy-duty, intelligent electric fencing systems specifically engineered for wildlife boundaries, game reserves, and community conservancies.",
+      image: "https://images.unsplash.com/photo-1549473889-14f410d83298?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "Large-Mammal Boundary Barriers",
+        "Species-Specific Engineering & Heavy-Duty Posts",
+        "Spring-Tensioned Wires & Outrigger Offsets",
+        "Multi-Zone Energizers & GSM Telemetry",
+        "Real-Time Diagnostics & Solar-Powered Stations",
+        "Anti-Poaching Integration & Early-Warning Alarms",
+        "CCTV, Thermal Linkage & Tamper Detection",
+        "Non-Lethal Deterrence & Corridor Gates",
+        "Human-Wildlife Conflict Mitigation"
+      ]
+    }
 
   ];
 
@@ -69,7 +107,7 @@ export default function ServicesPage() {
             <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">WHAT WE DO</span>
             <div className="w-12 h-0.5 bg-accent mx-auto mb-6" />
             <p className="text-slate-600 font-sans text-base sm:text-lg">
-              We provide full-spectrum engineering, procurement, construction, and development services under strict compliance with Kenyan and East African regulatory authorities.
+              We provide full-spectrum engineering, procurement, construction, and development services. We specialize in robust solar setups, core electrical works, and advanced electric fencing tailored for residential, commercial, and large-scale wildlife conservation environments.
             </p>
           </div>
 
