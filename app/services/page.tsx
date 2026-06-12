@@ -22,6 +22,54 @@ interface ServiceDetail {
 export default function ServicesPage() {
   const services: ServiceDetail[] = [
     {
+      id: "electrical",
+      title: "Core Electrical Works & Security Systems",
+      icon: Zap,
+      description: "We handle foundational electrical infrastructure and advanced security systems with a strict focus on safety and international engineering standards. Our team designs and installs high-performance systems for residential, commercial, and industrial facilities.",
+      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "High-voltage & low-voltage wiring for facilities",
+        "Advanced Electric Fencing for properties & estates",
+        "Power Distribution & main switchboards",
+        "Automated Backup Generators & UPS integration",
+        "Smart security alarm systems & monitoring",
+        "Safety Inspections, grounding & surge protection",
+        "Energy Audits to identify power wastage"
+      ]
+    },
+    {
+      id: "wildlife-fencing",
+      title: "Electric Fencing & Wildlife Management",
+      icon: Shield,
+      description: "Perimeter protection and wildlife conservation require a highly specialized approach. We design and install heavy-duty, intelligent electric fencing systems specifically engineered for wildlife boundaries, game reserves, community conservancies, and agricultural land boundaries.",
+      image: "https://images.unsplash.com/photo-1549473889-14f410d83298?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "Large-Mammal Boundary Barriers & Heavy-Duty Posts",
+        "Species-Specific Engineering & Outrigger Offsets",
+        "Spring-Tensioned Wires & High-Tensile Systems",
+        "Multi-Zone Energizers & GSM Telemetry Monitoring",
+        "Real-Time Diagnostics & Solar-Powered Energizer Stations",
+        "Anti-Poaching Integration & Early-Warning Alarms",
+        "CCTV, Thermal Linkage & Tamper Detection",
+        "Non-Lethal Deterrence & Corridor Gates",
+        "Human-Wildlife Conflict Mitigation Systems"
+      ]
+    },
+    {
+      id: "solar",
+      title: "Advanced Solar Power Systems",
+      icon: Sun,
+      description: "We design and install custom solar solutions to eliminate power outages and slash your electricity bills. We specialize in robust solar setups tailored for residential, commercial, and off-grid environments.",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80",
+      details: [
+        "Custom Design matched to energy needs",
+        "Hybrid Systems with battery storage",
+        "Off-Grid Setup for remote locations",
+        "Net Metering to sell excess power",
+        "Maintenance & Battery Health Diagnostics"
+      ]
+    },
+    {
       id: "building",
       title: "Building Construction Works",
       icon: Building2,
@@ -36,54 +84,7 @@ export default function ServicesPage() {
       description: "We design and build large paved areas, highways, and durable access roads finished with robust asphalt surfacing and reinforced by heavy concrete retaining structures.",
       image: "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1200&q=80",
       details: ["Bulk earthworks & site grading", "Piled foundations & deep soil stabilization", "Robust asphalt surfacing", "Concrete retaining structures", "Well pads & specialized access routes", "Equipped construction camps"]
-    },
-    {
-      id: "electrical",
-      title: "Core Electrical Works",
-      icon: Zap,
-      description: "We handle foundational electrical infrastructure with a strict focus on safety and international engineering standards. Our team translates complex technical installations into safe, seamless, and energy-efficient systems.",
-      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
-      details: [
-        "Full Wiring for new builds & renovations",
-        "Power Distribution & main switchboards",
-        "Automated Backup Generators",
-        "Energy Audits to identify power wastage",
-        "Safety Inspections, grounding & surge protection"
-      ]
-    },
-    {
-      id: "solar",
-      title: "Advanced Solar Power Systems",
-      icon: Sun,
-      description: "We design and install custom solar solutions to eliminate power outages and slash your electricity bills. We specialize in robust solar setups tailored for residential and commercial environments.",
-      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80",
-      details: [
-        "Custom Design matched to energy needs",
-        "Hybrid Systems with battery storage",
-        "Off-Grid Setup for remote locations",
-        "Net Metering to sell excess power",
-        "Maintenance & Battery Health Diagnostics"
-      ]
-    },
-    {
-      id: "wildlife-fencing",
-      title: "Perimeter Protection & Wildlife Management",
-      icon: Shield,
-      description: "Wildlife conservation requires a specialized approach to fencing. We design and install heavy-duty, intelligent electric fencing systems specifically engineered for wildlife boundaries, game reserves, and community conservancies.",
-      image: "https://images.unsplash.com/photo-1549473889-14f410d83298?auto=format&fit=crop&w=1200&q=80",
-      details: [
-        "Large-Mammal Boundary Barriers",
-        "Species-Specific Engineering & Heavy-Duty Posts",
-        "Spring-Tensioned Wires & Outrigger Offsets",
-        "Multi-Zone Energizers & GSM Telemetry",
-        "Real-Time Diagnostics & Solar-Powered Stations",
-        "Anti-Poaching Integration & Early-Warning Alarms",
-        "CCTV, Thermal Linkage & Tamper Detection",
-        "Non-Lethal Deterrence & Corridor Gates",
-        "Human-Wildlife Conflict Mitigation"
-      ]
     }
-
   ];
 
   return (
@@ -107,7 +108,7 @@ export default function ServicesPage() {
             <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">WHAT WE DO</span>
             <div className="w-12 h-0.5 bg-accent mx-auto mb-6" />
             <p className="text-slate-600 font-sans text-base sm:text-lg">
-              We provide full-spectrum engineering, procurement, construction, and development services. We specialize in robust solar setups, core electrical works, and advanced electric fencing tailored for residential, commercial, and large-scale wildlife conservation environments.
+              We provide full-spectrum engineering, procurement, construction, and development services. We place a primary emphasis on advanced electric fencing, robust solar energy systems, and core electrical installations tailored for residential, commercial, and large-scale wildlife conservation environments.
             </p>
           </div>
 

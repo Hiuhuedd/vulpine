@@ -31,8 +31,8 @@ export default function SeedPage() {
         hero: {
           visible: true,
           heading: "Building East Africa's Future, One Project at a Time",
-          subheading: "Design, Construction and Maintenance of Natural and Built Environment",
-          body: "Our journey to where we are today has been marked with many hurdles and challenges. Our hard work, determination and unbowed resolve to always deliver quality and on time, has been rewarded in more ways than we could imagine.",
+          subheading: "Specialists in Electrical Systems, Security Fencing, Solar Solutions & Civil Infrastructure",
+          body: "Delivering advanced electrical installations, intelligent perimeter security, sustainable solar energy, and general civil construction across East Africa with uncompromising integrity.",
           ctaLabel: "View Our Projects",
           ctaLink: "/projects",
           images: [
@@ -51,11 +51,11 @@ export default function SeedPage() {
         services: {
           visible: true,
           heading: "OUR CORE COMPETENCIES",
-          subheading: "We offer comprehensive construction, infrastructure, and management solutions across East Africa.",
+          subheading: "We offer comprehensive electrical infrastructure, electric fencing, solar energy, and general construction solutions across East Africa.",
           items: [
+            { id: "electrical", title: "Electrical, Solar & Fencing", description: "Advanced electric fencing, robust solar systems, and core electrical infrastructure built to safety standards.", icon: "Zap" },
             { id: "building", title: "Building Works", description: "High-quality residential, commercial, and institutional projects delivered to standards.", icon: "Building2" },
-            { id: "roads", title: "Road Construction Works", description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.", icon: "Milestone" },
-            { id: "electrical", title: "Electrical Works", description: "Power infrastructure, high/low voltage installations, and maintenance services.", icon: "Zap" }
+            { id: "roads", title: "Road Construction Works", description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.", icon: "Milestone" }
           ]
         },
         strengths: {

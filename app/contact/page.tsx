@@ -12,7 +12,7 @@ function ContactFormContent() {
     companyName: '',
     phone: '',
     email: '',
-    service: 'building',
+    service: 'electrical',
     description: '',
     budget: '',
   });
@@ -65,7 +65,7 @@ function ContactFormContent() {
           companyName: '',
           phone: '',
           email: '',
-          service: 'building',
+          service: 'electrical',
           description: '',
           budget: '',
         });
@@ -171,9 +171,9 @@ function ContactFormContent() {
             onChange={handleChange}
             className="w-full bg-white border border-surface px-4 py-3 text-sm focus:outline-none focus:border-accent font-sans"
           >
+            <option value="electrical">Electrical, Solar & Fencing Works</option>
             <option value="building">Building Works</option>
             <option value="roads">Road Construction Works</option>
-            <option value="electrical">Electrical Works</option>
             <option value="other">Other Inquiry</option>
           </select>
         </div>

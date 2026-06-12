@@ -21,6 +21,12 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
   // Force the website to only ever show these 3 core services, ignoring CMS items completely
   const displayItems = [
     {
+      id: "electrical",
+      title: "Electrical, Solar & Fencing",
+      description: "Advanced electric fencing for properties & wildlife, high-capacity solar setups, and core electrical infrastructure built to international standards.",
+      icon: "Zap"
+    },
+    {
       id: "building",
       title: "Building Works",
       description: "High-quality residential, commercial, and institutional projects delivered to standards.",
@@ -31,12 +37,6 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
       title: "Road Construction Works",
       description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.",
       icon: "Milestone"
-    },
-    {
-      id: "electrical",
-      title: "Electrical, Solar & Security",
-      description: "Robust solar setups, core electrical infrastructure, and advanced electric fencing for properties and wildlife conservation.",
-      icon: "Zap"
     }
   ];
 
