@@ -45,7 +45,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col w-full">
       {/* 1. Hero Banner */}
-      <section 
+      <section
         className="relative py-24 bg-surface bg-cover bg-center text-primary text-center flex flex-col items-center justify-center"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80')`, height: '320px' }}
       >
@@ -67,7 +67,6 @@ export default function AboutPage() {
                 <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-accent" />
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-accent" />
               </div>
-              <h3 className="font-serif text-lg font-bold text-primary mt-4">Wilson Baru Wachira</h3>
               <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">Managing Director</p>
             </div>
             <div className="md:col-span-8 space-y-6">
@@ -178,8 +177,8 @@ export default function AboutPage() {
 
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {cultureBubbles.map((bubble, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="bg-white border border-surface text-primary font-sans text-xs font-bold uppercase tracking-wider px-6 py-4 shadow-sm hover:border-accent hover:text-accent transition-colors duration-200"
               >
                 {bubble}
@@ -190,27 +189,7 @@ export default function AboutPage() {
       </section>
 
       {/* 8. Certifications Strip */}
-      <section className="bg-surface text-primary py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">COMPLIANCE & CREDENTIALS</span>
-            <h2 className="font-serif text-3xl font-bold tracking-wide text-primary">Certifications</h2>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certifications.map((c, idx) => (
-              <div key={idx} className="bg-primary/50 border border-accent/20 p-6 flex flex-col justify-between h-40">
-                <div className="text-accent"><FileText size={28} /></div>
-                <div className="space-y-1">
-                  <h4 className="font-serif text-xs font-bold tracking-wide text-primary leading-tight">{c.title}</h4>
-                  <p className="text-accent font-sans text-[11px] font-bold tracking-wide">{c.ref}</p>
-                  <p className="text-primary/50 font-sans text-[10px]">{c.date || c.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

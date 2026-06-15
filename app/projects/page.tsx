@@ -11,7 +11,7 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Electrical Works');
   const [loading, setLoading] = useState(true);
 
   // Modal / Lightbox State
@@ -25,14 +25,28 @@ export default function ProjectsPage() {
         const q = query(collection(db, 'projects'), where('visible', '==', true));
         const snap = await getDocs(q);
         const list: ProjectData[] = [];
-        const catsSet = new Set<string>(['All']);
+        const catsSet = new Set<string>(['Electrical Works']);
         snap.forEach((doc) => {
           const data = doc.data() as ProjectData;
           list.push(data);
-          if (data.category) catsSet.add(data.category);
+          if (data.category) {
+            const catLower = data.category.toLowerCase();
+            if (catLower === 'electrical' || catLower === 'electrical works' || catLower === 'electrical, solar & fencing') {
+              catsSet.add('Electrical Works');
+            } else {
+              catsSet.add(data.category);
+            }
+          }
         });
         setProjects(list);
-        setFilteredProjects(list);
+        
+        // Initial filter: only show electrical projects
+        const electricalList = list.filter(p => 
+          p.category?.toLowerCase() === 'electrical works' || 
+          p.category?.toLowerCase() === 'electrical, solar & fencing' ||
+          p.category?.toLowerCase() === 'electrical'
+        );
+        setFilteredProjects(electricalList);
         setCategories(Array.from(catsSet));
       } catch (err) {
         console.error("Error fetching projects:", err);
@@ -45,8 +59,12 @@ export default function ProjectsPage() {
 
   const selectCategory = (cat: string) => {
     setSelectedCategory(cat);
-    if (cat === 'All') {
-      setFilteredProjects(projects);
+    if (cat === 'Electrical Works') {
+      setFilteredProjects(projects.filter(p => 
+        p.category?.toLowerCase() === 'electrical works' || 
+        p.category?.toLowerCase() === 'electrical, solar & fencing' ||
+        p.category?.toLowerCase() === 'electrical'
+      ));
     } else {
       setFilteredProjects(projects.filter(p => p.category === cat));
     }

@@ -7,8 +7,25 @@ import { db } from '@/lib/firebase';
 import { TeamMemberData } from '@/types/cms';
 import { ChevronDown, ChevronRight, User, Award, Users } from 'lucide-react';
 
+const STATIC_TEAM: TeamMemberData[] = [
+  {
+    name: "Wilson Baru Wachira",
+    title: "Managing Director / Director",
+    bio: "Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and PPP initiatives across East Africa.",
+    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
+    visible: true
+  },
+  {
+    name: "Technical Engineer",
+    title: "Head of Technical & Engineering Services",
+    bio: "Oversees engineering designs, site planning, quality assurance, and compliance with the National Construction Authority (NCA) guidelines.",
+    photo: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80",
+    visible: true
+  }
+];
+
 export default function TeamPage() {
-  const [team, setTeam] = useState<TeamMemberData[]>([]);
+  const [team, setTeam] = useState<TeamMemberData[]>(STATIC_TEAM);
   const [loading, setLoading] = useState(true);
 
   // Collapsible nodes state for Org Chart
@@ -27,7 +44,19 @@ export default function TeamPage() {
         snap.forEach((doc) => {
           list.push(doc.data() as TeamMemberData);
         });
-        setTeam(list);
+        
+        // Merge with static team
+        const merged = [...STATIC_TEAM];
+        list.forEach(item => {
+          const existsIndex = merged.findIndex(m => m.name.toLowerCase() === item.name.toLowerCase());
+          if (existsIndex === -1) {
+            merged.push(item);
+          } else {
+            merged[existsIndex] = item;
+          }
+        });
+        
+        setTeam(merged);
       } catch (err) {
         console.error("Error fetching team:", err);
       } finally {

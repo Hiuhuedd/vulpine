@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white relative pt-24 pb-8 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(164,206,49,0.1)_0%,transparent_50%)] pointer-events-none" />
-      
+
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
@@ -32,7 +32,7 @@ export default function Footer() {
 
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/10">
-          
+
           {/* Column 1: Logo & Tagline */}
           <div className="lg:col-span-4 space-y-8 pr-8">
             <Link href="/" className="flex items-center text-white space-x-3">
@@ -114,9 +114,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-start">
             <span>© 2025 Vulpine Ltd.</span>
             <span className="hidden md:inline">|</span>
-            <span>NCA6 Reg: 85321/B/0423</span>
-            <span className="hidden md:inline">|</span>
-            <span>KRA PIN: P051737046N</span>
+
           </div>
           <div>
             ARCHITECTING PROGRESS

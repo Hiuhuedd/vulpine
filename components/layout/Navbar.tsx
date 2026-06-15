@@ -100,7 +100,7 @@ export default function Navbar() {
       {/* Mobile Drawer - Redesigned */}
       <div
         className={`fixed inset-0 z-40 bg-primary transform transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] md:hidden ${
-          isOpen ? 'translate-y-0' : '-translate-y-full'
+          isOpen ? 'translate-y-0 opacity-100 pointer-events-auto visible' : '-translate-y-full opacity-0 pointer-events-none invisible'
         }`}
       >
         <div className="flex flex-col h-full justify-center px-8 relative overflow-hidden">
