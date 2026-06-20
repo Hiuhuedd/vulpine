@@ -21,8 +21,8 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
   const displayItems = data?.items && data.items.length > 0 ? data.items : [
     {
       id: "electrical",
-      title: "Electrical, Solar & Fencing",
-      description: "Advanced electric fencing for properties & wildlife, high-capacity solar setups, and core electrical infrastructure built to international standards.",
+      title: "Electrical Works",
+      description: "Advanced electric fencing, robust solar setups, and core electrical infrastructure built to international standards.",
       icon: "Zap"
     },
     {
@@ -33,7 +33,7 @@ export default function ServicesOverview({ data }: ServicesOverviewProps) {
     },
     {
       id: "roads",
-      title: "Road Construction Works",
+      title: "Road Works",
       description: "Excavation, earthworks, paving, drainage systems, and professional pipe-laying.",
       icon: "Milestone"
     }

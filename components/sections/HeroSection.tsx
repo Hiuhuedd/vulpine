@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ data }: HeroSectionProps) {
   const heading = data?.heading || "BUILDING EAST AFRICA'S FUTURE";
-  const subheading = data?.subheading || "SPECIALISTS IN ELECTRICAL, SOLAR, SECURITY FENCING & CONSTRUCTION";
+  const subheading = data?.subheading || "SPECIALISTS IN ELECTRICAL, BUILDING & ROAD WORKS";
   const body = data?.body || "Unbowed resolve to deliver quality. Engineering the natural and built environment with precision, scale, and uncompromising integrity.";
   const ctaLabel = data?.ctaLabel || "INITIALIZE PROJECT";
   const ctaLink = data?.ctaLink || "/projects";

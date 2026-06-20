@@ -7,6 +7,21 @@ import { db } from '@/lib/firebase';
 import { ProjectData } from '@/types/cms';
 import { MapPin, FolderOpen, X, Info, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 
+function normalizeCategory(category?: string): string {
+  if (!category) return 'Other';
+  const lower = category.toLowerCase();
+  if (lower.includes('electrical') || lower.includes('solar') || lower.includes('fencing')) {
+    return 'Electrical Works';
+  }
+  if (lower.includes('building')) {
+    return 'Building Works';
+  }
+  if (lower.includes('road') || lower.includes('highway') || lower.includes('civil') || lower.includes('infrastructure')) {
+    return 'Road Works';
+  }
+  return category;
+}
+
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]);
@@ -28,24 +43,15 @@ export default function ProjectsPage() {
         const catsSet = new Set<string>(['Electrical Works']);
         snap.forEach((doc) => {
           const data = doc.data() as ProjectData;
-          list.push(data);
-          if (data.category) {
-            const catLower = data.category.toLowerCase();
-            if (catLower === 'electrical' || catLower === 'electrical works' || catLower === 'electrical, solar & fencing') {
-              catsSet.add('Electrical Works');
-            } else {
-              catsSet.add(data.category);
-            }
-          }
+          const normalizedCat = normalizeCategory(data.category);
+          const normalizedProj = { ...data, category: normalizedCat };
+          list.push(normalizedProj);
+          catsSet.add(normalizedCat);
         });
         setProjects(list);
         
         // Initial filter: only show electrical projects
-        const electricalList = list.filter(p => 
-          p.category?.toLowerCase() === 'electrical works' || 
-          p.category?.toLowerCase() === 'electrical, solar & fencing' ||
-          p.category?.toLowerCase() === 'electrical'
-        );
+        const electricalList = list.filter(p => p.category === 'Electrical Works');
         setFilteredProjects(electricalList);
         setCategories(Array.from(catsSet));
       } catch (err) {
@@ -59,15 +65,7 @@ export default function ProjectsPage() {
 
   const selectCategory = (cat: string) => {
     setSelectedCategory(cat);
-    if (cat === 'Electrical Works') {
-      setFilteredProjects(projects.filter(p => 
-        p.category?.toLowerCase() === 'electrical works' || 
-        p.category?.toLowerCase() === 'electrical, solar & fencing' ||
-        p.category?.toLowerCase() === 'electrical'
-      ));
-    } else {
-      setFilteredProjects(projects.filter(p => p.category === cat));
-    }
+    setFilteredProjects(projects.filter(p => p.category === cat));
   };
 
   const openProjectDetails = (proj: ProjectData) => {

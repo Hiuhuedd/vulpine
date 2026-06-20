@@ -2,16 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  Building2, Milestone, Droplet, Zap, Briefcase,
-  Handshake, FileText, Construction, Layers, Home,
-  Users, ArrowRight, ArrowUpRight, Sun, Shield
-} from 'lucide-react';
+import * as Icons from 'lucide-react';
+import { useSection } from '@/hooks/useSection';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 interface ServiceDetail {
   id: string;
   title: string;
-  icon: React.ComponentType<any>;
+  icon: any;
   description: string;
   image?: string;
   details?: string[];
@@ -20,72 +18,107 @@ interface ServiceDetail {
 }
 
 export default function ServicesPage() {
-  const services: ServiceDetail[] = [
+  const { section: servicesData, loading } = useSection('services');
+
+  const fallbackServices: ServiceDetail[] = [
     {
       id: "electrical",
-      title: "Core Electrical Works & Security Systems",
-      icon: Zap,
-      description: "We handle foundational electrical infrastructure and advanced security systems with a strict focus on safety and international engineering standards. Our team designs and installs high-performance systems for residential, commercial, and industrial facilities.",
+      title: "Electrical Works",
+      icon: Icons.Zap,
+      description: "We handle foundational electrical infrastructure, advanced solar power systems, and high-security fencing with a strict focus on safety and international engineering standards. Our team designs and installs high-performance systems for residential, commercial, and industrial facilities.",
       image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
       details: [
         "High-voltage & low-voltage wiring for facilities",
-        "Advanced Electric Fencing for properties & estates",
         "Power Distribution & main switchboards",
         "Automated Backup Generators & UPS integration",
+        "Hybrid solar systems with battery storage",
+        "Advanced Electric Fencing & wildlife security",
         "Smart security alarm systems & monitoring",
         "Safety Inspections, grounding & surge protection",
         "Energy Audits to identify power wastage"
       ]
     },
     {
-      id: "wildlife-fencing",
-      title: "Electric Fencing & Wildlife Management",
-      icon: Shield,
-      description: "Perimeter protection and wildlife conservation require a highly specialized approach. We design and install heavy-duty, intelligent electric fencing systems specifically engineered for wildlife boundaries, game reserves, community conservancies, and agricultural land boundaries.",
-      image: "https://images.unsplash.com/photo-1549473889-14f410d83298?auto=format&fit=crop&w=1200&q=80",
-      details: [
-        "Large-Mammal Boundary Barriers & Heavy-Duty Posts",
-        "Species-Specific Engineering & Outrigger Offsets",
-        "Spring-Tensioned Wires & High-Tensile Systems",
-        "Multi-Zone Energizers & GSM Telemetry Monitoring",
-        "Real-Time Diagnostics & Solar-Powered Energizer Stations",
-        "Anti-Poaching Integration & Early-Warning Alarms",
-        "CCTV, Thermal Linkage & Tamper Detection",
-        "Non-Lethal Deterrence & Corridor Gates",
-        "Human-Wildlife Conflict Mitigation Systems"
-      ]
-    },
-    {
-      id: "solar",
-      title: "Advanced Solar Power Systems",
-      icon: Sun,
-      description: "We design and install custom solar solutions to eliminate power outages and slash your electricity bills. We specialize in robust solar setups tailored for residential, commercial, and off-grid environments.",
-      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80",
-      details: [
-        "Custom Design matched to energy needs",
-        "Hybrid Systems with battery storage",
-        "Off-Grid Setup for remote locations",
-        "Net Metering to sell excess power",
-        "Maintenance & Battery Health Diagnostics"
-      ]
-    },
-    {
       id: "building",
-      title: "Building Construction Works",
-      icon: Building2,
+      title: "Building Works",
+      icon: Icons.Building2,
       description: "Our comprehensive building works division handles everything from foundational stages of marking, excavation, and core concreting, moving into precision brick masonry and robust roof laying.",
       image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
       details: ["Foundational marking & excavation", "Core concreting & brick masonry", "Robust roof laying", "Drywall & acoustic ceilings", "Floor panels & fitted carpets", "Professional painting & wallpapering", "Custom joinery & modern kitchen furniture", "Attic adaptations"]
     },
     {
       id: "roads",
-      title: "Road Works & Civil Infrastructure",
-      icon: Milestone,
+      title: "Road Works",
+      icon: Icons.Milestone,
       description: "We design and build large paved areas, highways, and durable access roads finished with robust asphalt surfacing and reinforced by heavy concrete retaining structures.",
       image: "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1200&q=80",
       details: ["Bulk earthworks & site grading", "Piled foundations & deep soil stabilization", "Robust asphalt surfacing", "Concrete retaining structures", "Well pads & specialized access routes", "Equipped construction camps"]
     }
   ];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-light-green flex flex-col items-center justify-center text-primary font-sans">
+        <div className="relative w-12 h-12 flex items-center justify-center border-2 border-accent/20 border-t-accent rounded-full animate-spin mb-4" />
+        <span className="text-sm font-medium tracking-wide text-primary/60">Loading Services...</span>
+      </div>
+    );
+  }
+
+  const heading = servicesData?.heading || "OUR CORE COMPETENCIES";
+  const subheading = servicesData?.subheading || "We provide full-spectrum engineering, procurement, construction, and development services. We place a primary emphasis on building works, civil infrastructure, road works, and electrical installations tailored for residential, commercial, and industrial environments.";
+
+  const services: ServiceDetail[] = servicesData?.items && servicesData.items.length > 0
+    ? servicesData.items.map((item: any) => ({
+        id: item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        title: item.title,
+        icon: item.icon,
+        description: item.description,
+        image: item.image || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
+        details: item.details || (
+          (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? [
+            "High-voltage & low-voltage wiring for facilities",
+            "Power Distribution & main switchboards",
+            "Automated Backup Generators & UPS integration",
+            "Hybrid solar systems with battery storage",
+            "Advanced Electric Fencing & wildlife security",
+            "Smart security alarm systems & monitoring",
+            "Safety Inspections, grounding & surge protection",
+            "Energy Audits to identify power wastage"
+          ] :
+          (item.id === 'building' || item.title.toLowerCase().includes('building') || item.title.toLowerCase().includes('fencing') || item.title.toLowerCase().includes('construction')) ? [
+            "Foundational marking & excavation", 
+            "Core concreting & brick masonry", 
+            "Robust roof laying", 
+            "Drywall & acoustic ceilings", 
+            "Floor panels & fitted carpets", 
+            "Professional painting & wallpapering", 
+            "Custom joinery & modern kitchen furniture", 
+            "Attic adaptations"
+          ] :
+          (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? [
+            "Bulk earthworks & site grading", 
+            "Piled foundations & deep soil stabilization", 
+            "Robust asphalt surfacing", 
+            "Concrete retaining structures", 
+            "Well pads & specialized access routes", 
+            "Equipped construction camps"
+          ] : [
+            "Full lifecycle engineering design & execution",
+            "Regulatory compliance & permitting approvals",
+            "Site construction supervisor supervision",
+            "Quality assurance & control verification"
+          ]
+        ),
+        processSteps: item.processSteps || (
+          (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? ['Consultation', 'Engineering & Design', 'Installation & Testing', 'Support'] :
+          (item.id === 'building' || item.title.toLowerCase().includes('building') || item.title.toLowerCase().includes('construction') || item.title.toLowerCase().includes('fencing')) ? ['Excavation', 'Foundation', 'Masonry', 'Finishing'] :
+          (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? ['Site Grading', 'Base Stabilization', 'Asphalt Laying', 'Handover'] :
+          ['Planning', 'Procurement', 'Execution', 'Handover']
+        ),
+        contracts: item.contracts || ['Fixed Price', 'Design-Build', 'Unit Price']
+      }))
+    : fallbackServices;
 
   return (
     <div className="flex flex-col w-full">
@@ -105,16 +138,18 @@ export default function ServicesPage() {
       <section className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">WHAT WE DO</span>
+            <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">{heading}</span>
             <div className="w-12 h-0.5 bg-accent mx-auto mb-6" />
             <p className="text-slate-600 font-sans text-base sm:text-lg">
-              We provide full-spectrum engineering, procurement, construction, and development services. We place a primary emphasis on advanced electric fencing, robust solar energy systems, and core electrical installations tailored for residential, commercial, and large-scale wildlife conservation environments.
+              {subheading}
             </p>
           </div>
 
           <div className="flex flex-col gap-24">
             {services.map((service, idx) => {
-              const IconComponent = service.icon;
+              const IconComponent = typeof service.icon === 'string'
+                ? ((Icons as any)[service.icon] || Icons.HelpCircle)
+                : service.icon;
               const isEven = idx % 2 === 0;
 
               return (

@@ -69,9 +69,9 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase mb-8 font-sans">Our Services</h4>
             <ul className="space-y-4 text-sm text-white/70 font-sans font-medium">
-              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Electrical, Solar & Fencing Works</Link></li>
+              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Electrical Works</Link></li>
               <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Building Works</Link></li>
-              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Road Construction Works</Link></li>
+              <li><Link href="/services" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Road Works</Link></li>
             </ul>
           </div>
 

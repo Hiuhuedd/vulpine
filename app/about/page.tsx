@@ -94,7 +94,7 @@ export default function AboutPage() {
             <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase">Corporate Profile</span>
             <h2 className="font-serif text-3xl font-bold tracking-wide text-primary">Company Overview</h2>
             <p className="text-slate-600 font-sans text-base leading-relaxed">
-              Vulpine Limited is a premier construction firm incorporated in Nairobi, Kenya on October 20, 2018. Over the years, we have scaled our services to meet the growing need for robust road networks, modern public buildings, and large-scale water and electrical distribution networks. Licensed by the National Construction Authority (NCA), we operate under category NCA6, enabling us to handle major building contracting.
+              {aboutData?.body || "Vulpine Limited is a premier construction firm incorporated in Nairobi, Kenya on October 20, 2018. Over the years, we have scaled our services to focus on building works, road works, and electrical works. Licensed by the National Construction Authority (NCA), we operate under category NCA6, enabling us to handle major building contracting."}
             </p>
           </div>
         </div>

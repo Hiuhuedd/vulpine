@@ -11,7 +11,7 @@ interface AboutTeaserProps {
 
 export default function AboutTeaser({ data }: AboutTeaserProps) {
   const heading = data?.heading || "WHO WE ARE";
-  const body = data?.body || "Vulpine Limited is an NCA6 certified engineering firm incorporated on 20 Oct 2018. Over the years, we have built a profound reputation for executing advanced electrical works, high-voltage electric fencing for wildlife and property security, custom solar setups, and building construction, delivering high-value solutions that power and sustain communities.";
+  const body = data?.body || "Vulpine Limited is an NCA6 certified building and civil contractor incorporated on 20 Oct 2018. Over the years, we have built a profound reputation for executing advanced electrical works, building construction, and road works, delivering high-value solutions that power and sustain communities.";
   const ceoQuote = data?.ceoQuote || "Our journey to where we are today has been marked with many hurdles and challenges... Our hard work, determination and unbowed resolve to always deliver quality and on time, has been rewarded in more ways than we could imagine.";
 
   return (

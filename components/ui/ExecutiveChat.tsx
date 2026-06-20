@@ -52,7 +52,7 @@ const CHANNELS: Channel[] = [
     presetQuestions: [
       {
         q: 'What major projects are you currently executing?',
-        a: 'We are executing key building, road infrastructure, and specialized energy/security projects. Currently, we have active works in rural road networks, solar mini-grids, and high-security wildlife electric perimeter fencing.',
+        a: 'We are executing key building, road infrastructure, and electrical works. Currently, we have active works in public buildings, rural road networks, and high-capacity electrical grids.',
         sender: 'Executive Secretariat'
       },
       {
