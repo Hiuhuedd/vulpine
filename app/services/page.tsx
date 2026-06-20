@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { useSection } from '@/hooks/useSection';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import PageHero from '@/components/PageHero';
 
 interface ServiceDetail {
   id: string;
@@ -70,69 +71,63 @@ export default function ServicesPage() {
 
   const services: ServiceDetail[] = servicesData?.items && servicesData.items.length > 0
     ? servicesData.items.map((item: any) => ({
-        id: item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        title: item.title,
-        icon: item.icon,
-        description: item.description,
-        image: item.image || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
-        details: item.details || (
-          (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? [
-            "High-voltage & low-voltage wiring for facilities",
-            "Power Distribution & main switchboards",
-            "Automated Backup Generators & UPS integration",
-            "Hybrid solar systems with battery storage",
-            "Advanced Electric Fencing & wildlife security",
-            "Smart security alarm systems & monitoring",
-            "Safety Inspections, grounding & surge protection",
-            "Energy Audits to identify power wastage"
-          ] :
+      id: item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      title: item.title,
+      icon: item.icon,
+      description: item.description,
+      image: item.image || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
+      details: item.details || (
+        (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? [
+          "High-voltage & low-voltage wiring for facilities",
+          "Power Distribution & main switchboards",
+          "Automated Backup Generators & UPS integration",
+          "Hybrid solar systems with battery storage",
+          "Advanced Electric Fencing & wildlife security",
+          "Smart security alarm systems & monitoring",
+          "Safety Inspections, grounding & surge protection",
+          "Energy Audits to identify power wastage"
+        ] :
           (item.id === 'building' || item.title.toLowerCase().includes('building') || item.title.toLowerCase().includes('fencing') || item.title.toLowerCase().includes('construction')) ? [
-            "Foundational marking & excavation", 
-            "Core concreting & brick masonry", 
-            "Robust roof laying", 
-            "Drywall & acoustic ceilings", 
-            "Floor panels & fitted carpets", 
-            "Professional painting & wallpapering", 
-            "Custom joinery & modern kitchen furniture", 
+            "Foundational marking & excavation",
+            "Core concreting & brick masonry",
+            "Robust roof laying",
+            "Drywall & acoustic ceilings",
+            "Floor panels & fitted carpets",
+            "Professional painting & wallpapering",
+            "Custom joinery & modern kitchen furniture",
             "Attic adaptations"
           ] :
-          (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? [
-            "Bulk earthworks & site grading", 
-            "Piled foundations & deep soil stabilization", 
-            "Robust asphalt surfacing", 
-            "Concrete retaining structures", 
-            "Well pads & specialized access routes", 
-            "Equipped construction camps"
-          ] : [
-            "Full lifecycle engineering design & execution",
-            "Regulatory compliance & permitting approvals",
-            "Site construction supervisor supervision",
-            "Quality assurance & control verification"
-          ]
-        ),
-        processSteps: item.processSteps || (
-          (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? ['Consultation', 'Engineering & Design', 'Installation & Testing', 'Support'] :
+            (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? [
+              "Bulk earthworks & site grading",
+              "Piled foundations & deep soil stabilization",
+              "Robust asphalt surfacing",
+              "Concrete retaining structures",
+              "Well pads & specialized access routes",
+              "Equipped construction camps"
+            ] : [
+              "Full lifecycle engineering design & execution",
+              "Regulatory compliance & permitting approvals",
+              "Site construction supervisor supervision",
+              "Quality assurance & control verification"
+            ]
+      ),
+      processSteps: item.processSteps || (
+        (item.id === 'electrical' || item.title.toLowerCase().includes('electrical')) ? ['Consultation', 'Engineering & Design', 'Installation & Testing', 'Support'] :
           (item.id === 'building' || item.title.toLowerCase().includes('building') || item.title.toLowerCase().includes('construction') || item.title.toLowerCase().includes('fencing')) ? ['Excavation', 'Foundation', 'Masonry', 'Finishing'] :
-          (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? ['Site Grading', 'Base Stabilization', 'Asphalt Laying', 'Handover'] :
-          ['Planning', 'Procurement', 'Execution', 'Handover']
-        ),
-        contracts: item.contracts || ['Fixed Price', 'Design-Build', 'Unit Price']
-      }))
+            (item.id === 'roads' || item.title.toLowerCase().includes('road') || item.title.toLowerCase().includes('water') || item.title.toLowerCase().includes('infrastructure')) ? ['Site Grading', 'Base Stabilization', 'Asphalt Laying', 'Handover'] :
+              ['Planning', 'Procurement', 'Execution', 'Handover']
+      ),
+      contracts: item.contracts || ['Fixed Price', 'Design-Build', 'Unit Price']
+    }))
     : fallbackServices;
 
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Banner */}
-      <section
-        className="relative py-24 bg-surface bg-cover bg-center text-primary text-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80')`, height: '320px' }}
-      >
-        <div className="absolute inset-0 bg-surface/75" />
-        <div className="relative z-10 max-w-4xl px-4">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">VULPINE LIMITED</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide">Our Services</h1>
-        </div>
-      </section>
+      <PageHero
+        pageId="services"
+        heading="Our Services"
+        fallbackImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+      />
 
       {/* Services List */}
       <section className="bg-white py-24">
@@ -165,10 +160,10 @@ export default function ServicesPage() {
                   {/* Pictorial Display */}
                   <div className="w-full lg:w-1/2">
                     <div className="relative aspect-[4/3] w-full bg-surface overflow-hidden group">
-                      <img 
-                        src={service.image} 
-                        alt={service.title} 
-                        className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700 ease-in-out" 
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700 ease-in-out"
                       />
                       <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
                       <div className="absolute bottom-0 left-0 bg-accent text-dark p-4">

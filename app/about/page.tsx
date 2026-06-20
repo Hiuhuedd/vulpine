@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useSection } from '@/hooks/useSection';
 import { Shield, Target, Eye, Award, FileText, CheckCircle2 } from 'lucide-react';
+import PageHero from '@/components/PageHero';
 
 export default function AboutPage() {
   const { section: aboutData, loading } = useSection('about');
@@ -48,17 +49,11 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col w-full">
-      {/* 1. Hero Banner */}
-      <section
-        className="relative py-24 bg-surface bg-cover bg-center text-primary text-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80')`, height: '320px' }}
-      >
-        <div className="absolute inset-0 bg-surface/75" />
-        <div className="relative z-10 max-w-4xl px-4">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">VULPINE LIMITED</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide">Who We Are</h1>
-        </div>
-      </section>
+      <PageHero
+        pageId="about"
+        heading="Who We Are"
+        fallbackImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
+      />
 
       {/* 2. CEO Note & Letter */}
       <section className="bg-white py-20">

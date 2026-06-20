@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { TeamMemberData } from '@/types/cms';
 import { ChevronDown, ChevronRight, User, Award, Users } from 'lucide-react';
+import PageHero from '@/components/PageHero';
 
 const STATIC_TEAM: TeamMemberData[] = [
   {
+    id: "static_wilson",
     name: "Wilson Baru Wachira",
     title: "Managing Director / Director",
     bio: "Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and PPP initiatives across East Africa.",
@@ -16,6 +18,7 @@ const STATIC_TEAM: TeamMemberData[] = [
     visible: true
   },
   {
+    id: "static_tech_engineer",
     name: "Technical Engineer",
     title: "Head of Technical & Engineering Services",
     bio: "Oversees engineering designs, site planning, quality assurance, and compliance with the National Construction Authority (NCA) guidelines.",
@@ -36,34 +39,31 @@ export default function TeamPage() {
   });
 
   useEffect(() => {
-    async function fetchTeam() {
-      try {
-        const q = query(collection(db, 'team'), where('visible', '==', true));
-        const snap = await getDocs(q);
-        const list: TeamMemberData[] = [];
-        snap.forEach((doc) => {
-          list.push(doc.data() as TeamMemberData);
-        });
-        
-        // Merge with static team
-        const merged = [...STATIC_TEAM];
-        list.forEach(item => {
-          const existsIndex = merged.findIndex(m => m.name.toLowerCase() === item.name.toLowerCase());
-          if (existsIndex === -1) {
-            merged.push(item);
-          } else {
-            merged[existsIndex] = item;
-          }
-        });
-        
-        setTeam(merged);
-      } catch (err) {
-        console.error("Error fetching team:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchTeam();
+    const q = query(collection(db, 'team'), where('visible', '==', true));
+    const unsub = onSnapshot(q, (snap) => {
+      const list: TeamMemberData[] = [];
+      snap.forEach((doc) => {
+        list.push({ ...doc.data(), id: doc.id } as TeamMemberData);
+      });
+
+      // Merge Firestore members over static fallbacks (match by name)
+      const merged = [...STATIC_TEAM];
+      list.forEach(item => {
+        const existsIndex = merged.findIndex(m => m.name.toLowerCase() === item.name.toLowerCase());
+        if (existsIndex === -1) {
+          merged.push(item);
+        } else {
+          merged[existsIndex] = item;
+        }
+      });
+
+      setTeam(merged);
+      setLoading(false);
+    }, (err) => {
+      console.error("Error fetching team:", err);
+      setLoading(false);
+    });
+    return () => unsub();
   }, []);
 
   const toggleNode = (node: string) => {
@@ -83,17 +83,11 @@ export default function TeamPage() {
 
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Banner */}
-      <section 
-        className="relative py-24 bg-surface bg-cover bg-center text-primary text-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80')`, height: '320px' }}
-      >
-        <div className="absolute inset-0 bg-surface/75" />
-        <div className="relative z-10 max-w-4xl px-4">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">VULPINE LIMITED</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide">Our Leadership</h1>
-        </div>
-      </section>
+      <PageHero
+        pageId="team"
+        heading="Our Leadership"
+        fallbackImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
+      />
 
       {/* Leadership Grid */}
       <section className="bg-white py-24">

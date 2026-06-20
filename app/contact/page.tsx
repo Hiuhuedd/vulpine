@@ -3,6 +3,9 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { MapPin, Mail, Phone, Clock, FileText, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import PageHero from '@/components/PageHero';
 
 function ContactFormContent() {
   const searchParams = useSearchParams();
@@ -219,19 +222,35 @@ function ContactFormContent() {
 }
 
 export default function ContactPage() {
+  const [contactInfo, setContactInfo] = useState({
+    address: 'Kangundo Road, Block 2/589, Embakasi, Nairobi',
+    email: 'vulpineltd@gmail.com',
+    phone: '+254 720 999 925',
+    poBox: '269-00400, Nairobi, Kenya',
+  });
+
+  useEffect(() => {
+    const ref = doc(db, 'settings', 'contact');
+    const unsub = onSnapshot(ref, (snap) => {
+      if (snap.exists()) {
+        const d = snap.data();
+        setContactInfo({
+          address: d.address || contactInfo.address,
+          email: d.email || contactInfo.email,
+          phone: d.phone || contactInfo.phone,
+          poBox: d.poBox || contactInfo.poBox,
+        });
+      }
+    });
+    return () => unsub();
+  }, []);
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Banner */}
-      <section 
-        className="relative py-24 bg-surface bg-cover bg-center text-primary text-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80')`, height: '320px' }}
-      >
-        <div className="absolute inset-0 bg-surface/75" />
-        <div className="relative z-10 max-w-4xl px-4">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase block mb-3">VULPINE LIMITED</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide">Contact Us</h1>
-        </div>
-      </section>
+      <PageHero
+        pageId="contact"
+        heading="Contact Us"
+        fallbackImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+      />
 
       {/* Main Body */}
       <section className="bg-white py-24">
@@ -251,13 +270,12 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* Roster of Details */}
               <div className="space-y-5 text-sm font-sans text-primary/80 pt-4 border-t border-surface">
                 <div className="flex items-start space-x-3.5">
                   <MapPin size={20} className="text-primary shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500">Address</h4>
-                    <span>Kangundo Road, Block 2/589, Embakasi, Nairobi</span>
+                    <span>{contactInfo.address}</span>
                   </div>
                 </div>
 
@@ -265,7 +283,7 @@ export default function ContactPage() {
                   <Mail size={20} className="text-primary shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500">Email Address</h4>
-                    <span>vulpineltd@gmail.com</span>
+                    <span>{contactInfo.email}</span>
                   </div>
                 </div>
 
@@ -273,7 +291,7 @@ export default function ContactPage() {
                   <Phone size={20} className="text-primary shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500">Call Us</h4>
-                    <span>+254 720 999 925</span>
+                    <span>{contactInfo.phone}</span>
                   </div>
                 </div>
 
@@ -281,7 +299,7 @@ export default function ContactPage() {
                   <div className="text-primary shrink-0 text-xs font-bold mt-0.5">P.O. Box</div>
                   <div>
                     <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500">Post Box</h4>
-                    <span>269-00400, Nairobi, Kenya</span>
+                    <span>{contactInfo.poBox}</span>
                   </div>
                 </div>
               </div>
