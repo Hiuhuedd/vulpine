@@ -17,8 +17,12 @@ export default function AboutPage() {
   }
 
   const ceoLetter = aboutData?.ceoQuote || "Our journey to where we are today has been marked with many hurdles and challenges... Our hard work, determination and unbowed resolve to always deliver quality and on time, has been rewarded in more ways than we could imagine.";
-  const vision = "To be the most admired & sought after building & Civil Contractor in Africa and beyond.";
-  const mission = "To undertake construction projects, in a very professional manner while maintaining the highest quality standards bearing in mind the factors of completing projects on time, ensuring that clients have value for money and laws governing construction industry as stipulated by Government bodies are adhered to.";
+  
+  const visionItem = aboutData?.items?.find((item: any) => item.title?.toLowerCase() === 'vision');
+  const missionItem = aboutData?.items?.find((item: any) => item.title?.toLowerCase() === 'mission');
+  
+  const vision = visionItem?.content || "To be the most admired & sought after building & Civil Contractor in Africa and beyond.";
+  const mission = missionItem?.content || "To undertake construction projects, in a very professional manner while maintaining the highest quality standards bearing in mind the factors of completing projects on time, ensuring that clients have value for money and laws governing construction industry as stipulated by Government bodies are adhered to.";
 
   const pillars = [
     { num: "01", title: "Operational Excellence", text: "Maintain world-class quality standards and zero-accident site records." },

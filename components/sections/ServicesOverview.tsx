@@ -18,8 +18,7 @@ function DynamicIcon({ name, className }: { name: string; className?: string }) 
 export default function ServicesOverview({ data }: ServicesOverviewProps) {
   const heading = data?.heading || "OUR CORE COMPETENCIES";
   const subheading = data?.subheading || "We offer comprehensive construction, infrastructure, and management solutions across East Africa.";
-  // Force the website to only ever show these 3 core services, ignoring CMS items completely
-  const displayItems = [
+  const displayItems = data?.items && data.items.length > 0 ? data.items : [
     {
       id: "electrical",
       title: "Electrical, Solar & Fencing",
