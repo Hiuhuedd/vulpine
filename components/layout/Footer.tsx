@@ -1,11 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+
+const DEFAULTS = {
+  address: 'Kangundo Road, Block 2/589, Embakasi, Nairobi',
+  email: 'vulpineltd@gmail.com',
+  phone: '+254 720 999 925',
+  poBox: '269-00400, Nairobi, Kenya',
+};
 
 export default function Footer() {
+  const [contact, setContact] = useState(DEFAULTS);
+
+  useEffect(() => {
+    const ref = doc(db, 'settings', 'contact');
+    const unsub = onSnapshot(ref, (snap) => {
+      if (snap.exists()) {
+        const d = snap.data();
+        setContact({
+          address: d.address || DEFAULTS.address,
+          email: d.email || DEFAULTS.email,
+          phone: d.phone || DEFAULTS.phone,
+          poBox: d.poBox || DEFAULTS.poBox,
+        });
+      }
+    });
+    return () => unsub();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -87,34 +114,33 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact Information */}
+          {/* Column 4: Contact Information — live from Firestore */}
           <div className="lg:col-span-3 space-y-6 text-sm text-white/70 font-sans font-medium">
             <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase mb-8">Contact Info</h4>
             <div className="flex items-start space-x-4">
               <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
-              <span>Kangundo Road, Block 2/589, Embakasi, Nairobi</span>
+              <span>{contact.address}</span>
             </div>
             <div className="flex items-start space-x-4">
               <Mail size={18} className="text-accent shrink-0 mt-0.5" />
-              <span>vulpineltd@gmail.com</span>
+              <span>{contact.email}</span>
             </div>
             <div className="flex items-start space-x-4">
               <Phone size={18} className="text-accent shrink-0 mt-0.5" />
-              <span>+254 720 999 925</span>
+              <span>{contact.phone}</span>
             </div>
             <div className="flex items-start space-x-4 pt-4 border-t border-white/10">
               <div className="text-accent font-bold tracking-widest shrink-0 text-xs mt-0.5">P.O. BOX</div>
-              <span>269-00400, Nairobi, Kenya</span>
+              <span>{contact.poBox}</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar Divider */}
+        {/* Bottom Bar */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between text-[11px] font-bold tracking-widest uppercase text-white/40 font-sans gap-4">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-start">
             <span>© 2025 Vulpine Ltd.</span>
             <span className="hidden md:inline">|</span>
-
           </div>
           <div>
             ARCHITECTING PROGRESS
@@ -124,5 +150,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

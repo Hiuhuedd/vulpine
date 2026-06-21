@@ -2,36 +2,37 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, onSnapshot, setDoc, doc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { TeamMemberData } from '@/types/cms';
 import { ChevronDown, ChevronRight, User, Award, Users } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 
-const STATIC_TEAM: TeamMemberData[] = [
+// Default members seeded to Firestore on first load if collection is empty.
+// After seeding, ALL content is managed exclusively via the admin CMS.
+const SEED_TEAM = [
   {
-    id: "static_wilson",
-    name: "Wilson Baru Wachira",
-    title: "Managing Director / Director",
-    bio: "Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and PPP initiatives across East Africa.",
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
-    visible: true
+    id: 'wilson-baru-wachira',
+    name: 'Wilson Baru Wachira',
+    title: 'Managing Director / Director',
+    bio: 'Managing Director of Vulpine Limited, leading the strategic and operational vision of the company since its founding. Highly experienced in large-scale construction management and PPP initiatives across East Africa.',
+    photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+    visible: true,
   },
   {
-    id: "static_tech_engineer",
-    name: "Technical Engineer",
-    title: "Head of Technical & Engineering Services",
-    bio: "Oversees engineering designs, site planning, quality assurance, and compliance with the National Construction Authority (NCA) guidelines.",
-    photo: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80",
-    visible: true
-  }
+    id: 'technical-engineer',
+    name: 'Technical Engineer',
+    title: 'Head of Technical & Engineering Services',
+    bio: 'Oversees engineering designs, site planning, quality assurance, and compliance with the National Construction Authority (NCA) guidelines.',
+    photo: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80',
+    visible: true,
+  },
 ];
 
 export default function TeamPage() {
-  const [team, setTeam] = useState<TeamMemberData[]>(STATIC_TEAM);
+  const [team, setTeam] = useState<TeamMemberData[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Collapsible nodes state for Org Chart
   const [expandedNodes, setExpandedNodes] = useState<{ [key: string]: boolean }>({
     md: true,
     gm: false,
@@ -39,43 +40,44 @@ export default function TeamPage() {
   });
 
   useEffect(() => {
-    const q = query(collection(db, 'team'), where('visible', '==', true));
-    const unsub = onSnapshot(q, (snap) => {
+    const unsub = onSnapshot(collection(db, 'team'), async (snap) => {
       const list: TeamMemberData[] = [];
-      snap.forEach((doc) => {
-        list.push({ ...doc.data(), id: doc.id } as TeamMemberData);
+      snap.forEach((d) => {
+        const data = { ...d.data(), id: d.id } as TeamMemberData;
+        if (data.visible !== false) list.push(data);
       });
 
-      // Merge Firestore members over static fallbacks (match by name)
-      const merged = [...STATIC_TEAM];
-      list.forEach(item => {
-        const existsIndex = merged.findIndex(m => m.name.toLowerCase() === item.name.toLowerCase());
-        if (existsIndex === -1) {
-          merged.push(item);
-        } else {
-          merged[existsIndex] = item;
+      if (list.length === 0) {
+        // First-time setup: seed Firestore with default members so admin can manage them
+        try {
+          await Promise.all(
+            SEED_TEAM.map((m) => setDoc(doc(db, 'team', m.id), m))
+          );
+          // onSnapshot will fire again with the seeded data
+        } catch (err) {
+          console.error('Failed to seed team:', err);
+          // Fall back to showing seed data locally if write fails
+          setTeam(SEED_TEAM as TeamMemberData[]);
+          setLoading(false);
         }
-      });
-
-      setTeam(merged);
-      setLoading(false);
+      } else {
+        setTeam(list);
+        setLoading(false);
+      }
     }, (err) => {
-      console.error("Error fetching team:", err);
+      console.error('Team fetch error:', err);
       setLoading(false);
     });
     return () => unsub();
   }, []);
 
   const toggleNode = (node: string) => {
-    setExpandedNodes((prev) => ({
-      ...prev,
-      [node]: !prev[node],
-    }));
+    setExpandedNodes((prev) => ({ ...prev, [node]: !prev[node] }));
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center font-sans">
+      <div className="min-h-screen flex items-center justify-center font-sans text-primary/60 text-sm">
         Loading Vulpine Team...
       </div>
     );
@@ -100,41 +102,47 @@ export default function TeamPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.id || index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="architectural-card bg-surface/20 border border-surface p-6 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 hover:border-accent/50 transition-all duration-300"
-              >
-                {/* Photo */}
-                <div className="w-32 h-40 bg-surface shrink-0 relative overflow-hidden">
-                  <img
-                    src={member.photo || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-0 left-0 bg-accent text-primary p-1">
-                    <Award size={14} />
+          {team.length === 0 ? (
+            <div className="text-center text-slate-400 font-sans text-sm py-12">
+              No team members found. Add members via the admin CMS.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {team.map((member, index) => (
+                <motion.div
+                  key={member.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="architectural-card bg-surface/20 border border-surface p-6 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 hover:border-accent/50 transition-all duration-300"
+                >
+                  {/* Photo */}
+                  <div className="w-32 h-40 bg-surface shrink-0 relative overflow-hidden">
+                    <img
+                      src={member.photo || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80'}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-0 left-0 bg-accent text-primary p-1">
+                      <Award size={14} />
+                    </div>
                   </div>
-                </div>
 
-                {/* Details */}
-                <div className="space-y-3 text-center sm:text-left flex-grow">
-                  <div>
-                    <h3 className="font-serif text-lg font-bold text-primary">{member.name}</h3>
-                    <p className="text-[11px] font-bold text-accent uppercase tracking-wider">{member.title}</p>
+                  {/* Details */}
+                  <div className="space-y-3 text-center sm:text-left flex-grow">
+                    <div>
+                      <h3 className="font-serif text-lg font-bold text-primary">{member.name}</h3>
+                      <p className="text-[11px] font-bold text-accent uppercase tracking-wider">{member.title}</p>
+                    </div>
+                    <p className="text-slate-600 font-sans text-xs leading-relaxed line-clamp-4">
+                      {member.bio}
+                    </p>
                   </div>
-                  <p className="text-slate-600 font-sans text-xs leading-relaxed line-clamp-4">
-                    {member.bio}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -148,22 +156,19 @@ export default function TeamPage() {
             <p className="text-slate-500 font-sans text-xs mt-2">Explore the chain of command and departments in Vulpine Limited.</p>
           </div>
 
-          {/* Org Tree (Collapsible Accordion Model) */}
           <div className="bg-white border border-surface p-6 sm:p-8 space-y-4 shadow-sm architectural-card">
-            
             {/* Level 1: MD */}
             <div className="border border-primary bg-primary text-primary p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="bg-accent text-primary p-1.5"><User size={18} /></div>
                 <div>
                   <h4 className="font-serif text-sm font-bold">Managing Director</h4>
-                  <p className="text-[10px] text-accent font-sans uppercase font-semibold">Wilson Baru Wachira</p>
+                  <p className="text-[10px] text-accent font-sans uppercase font-semibold">
+                    {team.find(m => m.title?.toLowerCase().includes('managing director'))?.name || 'Wilson Baru Wachira'}
+                  </p>
                 </div>
               </div>
-              <button 
-                onClick={() => toggleNode('md')}
-                className="text-primary hover:text-accent p-1.5 cursor-pointer"
-              >
+              <button onClick={() => toggleNode('md')} className="text-primary hover:text-accent p-1.5 cursor-pointer">
                 {expandedNodes.md ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
               </button>
             </div>
@@ -182,9 +187,7 @@ export default function TeamPage() {
                     <span>Board of Directors</span>
                   </div>
 
-                  {/* Level 3 Tree Branches */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    
                     {/* Branch A: General Manager */}
                     <div className="border border-surface p-4 space-y-3 bg-surface/10">
                       <div className="flex items-center justify-between">
@@ -193,8 +196,6 @@ export default function TeamPage() {
                           {expandedNodes.gm ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                         </button>
                       </div>
-
-                      {/* General Manager Departments */}
                       <AnimatePresence>
                         {expandedNodes.gm && (
                           <motion.ul
@@ -207,7 +208,7 @@ export default function TeamPage() {
                             <li>Site Agent</li>
                             <li>Environmental Expert</li>
                             <li>Personnel Department</li>
-                            <li>Procurement & Supply</li>
+                            <li>Procurement &amp; Supply</li>
                           </motion.ul>
                         )}
                       </AnimatePresence>
@@ -216,7 +217,7 @@ export default function TeamPage() {
                     {/* Branch B: Transport Manager */}
                     <div className="border border-surface p-4 bg-surface/10 flex flex-col justify-between">
                       <span className="font-serif text-xs font-bold text-primary block">Transport Manager</span>
-                      <span className="text-[10px] font-sans text-slate-500 mt-4 uppercase tracking-widest">Fleet & Logistics</span>
+                      <span className="text-[10px] font-sans text-slate-500 mt-4 uppercase tracking-widest">Fleet &amp; Logistics</span>
                     </div>
 
                     {/* Branch C: Chief Accountant */}
@@ -227,8 +228,6 @@ export default function TeamPage() {
                           {expandedNodes.acc ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                         </button>
                       </div>
-
-                      {/* Chief Accountant Departments */}
                       <AnimatePresence>
                         {expandedNodes.acc && (
                           <motion.ul
@@ -244,13 +243,10 @@ export default function TeamPage() {
                         )}
                       </AnimatePresence>
                     </div>
-
                   </div>
-
                 </motion.div>
               )}
             </AnimatePresence>
-
           </div>
         </div>
       </section>

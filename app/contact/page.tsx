@@ -235,10 +235,10 @@ export default function ContactPage() {
       if (snap.exists()) {
         const d = snap.data();
         setContactInfo({
-          address: d.address || contactInfo.address,
-          email: d.email || contactInfo.email,
-          phone: d.phone || contactInfo.phone,
-          poBox: d.poBox || contactInfo.poBox,
+          address: d.address || 'Kangundo Road, Block 2/589, Embakasi, Nairobi',
+          email: d.email || 'vulpineltd@gmail.com',
+          phone: d.phone || '+254 720 999 925',
+          poBox: d.poBox || '269-00400, Nairobi, Kenya',
         });
       }
     });
